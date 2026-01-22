@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Efe’den Hediye</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #16001c, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  padding: 40px;
+  border-radius: 22px;
+  width: 340px;
+  text-align: center;
+}
+
+/* BAŞLIK */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.header span {
+  font-size: 24px;
+  font-weight: 600;
+  background: linear-gradient(270deg, #ff4fd8, #ff8cf2, #ff4fd8);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbText 3s infinite;
+}
+
+.header .heart {
+  font-size: 24px;
+  animation: heartBeat 1.5s infinite;
+}
+
+@keyframes rgbText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  outline: none;
+  background: rgba(0,0,0,0.65);
+  color: white;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: #ff4fd8;
+  box-shadow: 0 0 25px #ff4fd8;
+}
+
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #ff4fd8, #ff82f2);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <div class="header">
+    <span>Efe’den Hediye</span>
+    <div class="heart">❤️</div>
+  </div>
+
+  <p>Tanıştığımız günü hatırlıyor musun?</p>
+
+  <input type="date" id="dateInput">
+
+  <button onclick="login()">Devam Et</button>
+</div>
+
+<script>
+function login() {
+  const correctDate = "2024-06-04"; // 04/06/2024
+  const date = document.getElementById("dateInput").value;
+
+  if (date === correctDate) {
+    window.location.href = "main.html"; // 🔥 BURASI BAĞLANTI
+  } else {
+    alert("Bu tarih doğru değil 💔");
+  }
+}
+</script>
+
+</body>
+</html>

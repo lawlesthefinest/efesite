@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anılar</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0a0010, #000);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* BAŞLIK */
+h1 {
+  text-align: center;
+  padding: 40px 20px;
+  color: #ff5fd8;
+}
+
+/* GALERİ */
+.gallery {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* KART */
+.card {
+  display: flex;
+  gap: 25px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 22px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(255, 0, 200, 0.15);
+}
+
+.card img {
+  width: 45%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.note {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.note h3 {
+  margin-bottom: 10px;
+  color: #ff7be5;
+}
+
+.note p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* 🎵 MÜZİK ÇALAR */
+.music-player {
+  max-width: 500px;
+  margin: 80px auto 60px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 0 40px rgba(255, 0, 200, 0.25);
+}
+
+.play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #ff4fd8, #ff82f2);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #ff4fd8;
+}
+
+.song-info strong {
+  font-size: 16px;
+}
+
+.song-info span {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* 🌷 LALE ANİMASYONU */
+.tulip {
+  position: fixed;
+  top: -40px;
+  font-size: 28px;
+  color: #ff69b4;
+  animation: fall linear forwards;
+  pointer-events: none;
+  text-shadow: 0 0 10px #ff69b4;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* MOBİL */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+  .card img,
+  .note {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>barışalım mı ? 💞</h1>
+
+<!-- 🖼️ GALERİ -->
+<div class="gallery">
+
+  <div class="card">
+    <img src="images/foto1.jpeg">
+    <div class="note">
+      <h3>söz</h3>
+      <p>
+      Sevgilim yaptığın hatalar yüzünden seni affedemedim, Ama şimdi her şeyin farkına vardım, Seni çok seviyorum her daim yanında olacağıma da söz veriyorum.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/foto2.jpeg">
+    <div class="note">
+      <h3>yanakların</h3>
+      <p>
+      o güzel yanakların, o güneş saçların, o parlak gözlerin beni benden alıyor.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/foto3.jpeg">
+    <div class="note">
+      <h3>Hâlâ</h3>
+      <p>
+        O kadar yaptığımız hatalara rağmen yinede ben seni çok seviyorum.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- 🎵 MÜZİK ÇALAR -->
+<div class="music-player">
+  <button class="play-btn" onclick="toggleMusic()">▶</button>
+
+  <div class="song-info">
+    <strong>I Wanna Be Yours</strong><br>
+    <span>seni çok özledim</span>
+  </div>
+
+  <audio id="music">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+const music = document.getElementById("music");
+const btn = document.querySelector(".play-btn");
+let tulipInterval = null;
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    btn.textContent = "⏸";
+    startTulips();
+  } else {
+    music.pause();
+    btn.textContent = "▶";
+    stopTulips();
+  }
+}
+
+function startTulips() {
+  if (tulipInterval) return;
+  tulipInterval = setInterval(() => {
+    const tulip = document.createElement("div");
+    tulip.className = "tulip";
+    tulip.textContent = "🌷";
+    tulip.style.left = Math.random() * 100 + "vw";
+    tulip.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(tulip);
+    setTimeout(() => tulip.remove(), 7000);
+  }, 400);
+}
+
+function stopTulips() {
+  clearInterval(tulipInterval);
+  tulipInterval = null;
+}
+</script>
+
+</body>
+</html>
